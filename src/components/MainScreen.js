@@ -3,9 +3,17 @@
  */
 
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, DrawerLayoutAndroid} from 'react-native';
+import {View, Text, StyleSheet, DrawerLayoutAndroid, ToolbarAndroid} from 'react-native';
 import DrawerList from '../components/DrawerList';
+import MainList from '../components/MainList';
 
+const DRAWER = 'drawer';
+const toolActions = [
+    {
+        title: '设置', show: 'always',
+        title: '其他', show: 'never'
+    }
+];
 
 class MainScreen extends Component {
     // 默认属性
@@ -33,18 +41,34 @@ class MainScreen extends Component {
     render() {
         return (
             <DrawerLayoutAndroid
+                ref={DRAWER}
                 drawerWidth={300}
                 drawerPosition={DrawerLayoutAndroid.positions.Left}
-                renderNavigationView={this.renderList}
-            >
+                keyboardDismissMode="on-drag"
+                renderNavigationView={this.renderList}>
+                <View style={styles.container}>
+                    <ToolbarAndroid
+                        onIconClicked={()=>this.refs[DRAWER].openDrawer()}
+                        navIcon={require('image!ic_menu_24dp')}
+                        actions={toolActions}
+                        style={styles.toolBar}/>
+                    <MainList/>
+                </View>
+
 
             </DrawerLayoutAndroid>
         );
     }
 }
 var styles = StyleSheet.create({
-    bg: {
-        backgroundColor: 'red'
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        backgroundColor: '#fafafa',
+    },
+    toolBar: {
+        backgroundColor: '#2196F3',
+        height: 56,
     }
 });
 export default MainScreen;
