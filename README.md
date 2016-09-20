@@ -1,2 +1,2 @@
 # nativeApp
-## react-native demo
+## react-native demo just for Android
