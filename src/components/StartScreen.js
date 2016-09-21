@@ -37,7 +37,7 @@ class StartScreen extends Component {
             .then((resJson)=> {
                 console.log(resJson);
                 this.setState({
-                    data: resJson.img,
+                    data: resJson,
                 });
 
             })
@@ -48,7 +48,7 @@ class StartScreen extends Component {
     render() {
         let img;
         if (this.state.data) {
-            img = {uri: this.state.data};
+            img = {uri: this.state.data.img};
         } else {
             img = require('../images/splash.png');
         }

@@ -3,11 +3,12 @@
  */
 
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, DrawerLayoutAndroid, ToolbarAndroid} from 'react-native';
+import {View, StyleSheet, DrawerLayoutAndroid, ToolbarAndroid, Dimensions} from 'react-native';
 import DrawerList from '../components/DrawerList';
 import MainList from '../components/MainList';
 
 const DRAWER = 'drawer';
+const WIDTH = Dimensions.get('window').width - 96;
 const toolActions = [
     {
         title: '设置', show: 'always',
@@ -42,7 +43,7 @@ class MainScreen extends Component {
         return (
             <DrawerLayoutAndroid
                 ref={DRAWER}
-                drawerWidth={300}
+                drawerWidth={WIDTH}
                 drawerPosition={DrawerLayoutAndroid.positions.Left}
                 keyboardDismissMode="on-drag"
                 renderNavigationView={this.renderList}>
@@ -50,6 +51,8 @@ class MainScreen extends Component {
                     <ToolbarAndroid
                         onIconClicked={()=>this.refs[DRAWER].openDrawer()}
                         navIcon={require('image!ic_menu_24dp')}
+                        title="首页"
+                        titleColor="white"
                         actions={toolActions}
                         style={styles.toolBar}/>
                     <MainList/>

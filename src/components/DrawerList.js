@@ -112,7 +112,7 @@ var styles = StyleSheet.create({
     text: {
         fontSize: 16,
         color: '#B2B2B2',
-        marginLeft: 16,
+        marginLeft: 20,
         width: 200,
     },
     list: {
@@ -146,13 +146,14 @@ var styles = StyleSheet.create({
 
     },
     homeImg: {
-        marginLeft: 25,
+        marginLeft: 30,
         height: 30,
         width: 30,
     },
     homeText: {
+        flex: 1,
         fontSize: 16,
-        paddingLeft: 20,
+        paddingLeft: 10,
         paddingTop: 5,
     },
     listItem: {
