@@ -15,6 +15,8 @@ import {
 import StartScreen from './src/components/StartScreen';
 import MainScreen from './src/components/MainScreen';
 
+import StoryToolbar from './src/components/StoryToolbar';
+
 // 使用Navigator 导航栏，还需要慢慢摸索使用
 
 class footballApp extends Component {
@@ -40,6 +42,7 @@ class footballApp extends Component {
             return (
                 <View style={styles.container}>
                     <MainScreen navigator={navigator}/>
+                    {/*<StoryToolbar/>*/}
                 </View>
             );
         } else {
