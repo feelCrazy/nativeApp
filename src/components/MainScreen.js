@@ -14,7 +14,7 @@ const WIDTH = Dimensions.get('window').width - 96;
 const toolActions = [
     {
         title: '设置', show: 'always',
-        title: '其他', show: 'never'
+        title: '其他', show: 'never',
     }
 ];
 
@@ -29,7 +29,9 @@ class MainScreen extends Component {
     constructor(props) {
         super(props);
         // 初始状态
-        this.state = {};
+        this.state = {
+            title: null,
+        };
         this.renderList = this.renderList.bind(this);
         this._closeDrawer = this._closeDrawer.bind(this);
     }
@@ -42,12 +44,18 @@ class MainScreen extends Component {
         );
     }
 
-    _closeDrawer() {
+    _closeDrawer(title) {
+        console.log('--', title);
         this.refs[DRAWER].closeDrawer();
+        this.setState({
+            title: title,
+        });
+
     }
 
     // 渲染
     render() {
+        let title = this.state.title ? this.state.title.name : '首页';
         return (
             <DrawerLayoutAndroid
                 ref={DRAWER}
@@ -59,7 +67,7 @@ class MainScreen extends Component {
                     <ToolbarAndroid
                         onIconClicked={()=>this.refs[DRAWER].openDrawer()}
                         navIcon={require('image!ic_menu_24dp')}
-                        title="首页"
+                        title={title}
                         titleColor="white"
                         actions={toolActions}
                         style={styles.toolBar}/>

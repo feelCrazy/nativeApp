@@ -13,7 +13,9 @@ class DrawerList extends Component {
     static defaultProps = {};
 
     // 属性类型
-    static propTypes = {};
+    static propTypes = {
+        closeDrawer: React.PropTypes.func.isRequired,
+    };
 
     // 构造
     constructor(props) {
@@ -33,12 +35,12 @@ class DrawerList extends Component {
         this.fetchData(API_THEMES);
     }
 
+
     // 自定义方法
     _renderRow(rowData) {
-        console.log(this.props);
         return (
             <TouchableNativeFeedback
-                onPress={()=>this.props.closeDrawer()}
+                onPress={()=>this.props.closeDrawer(rowData)}
             >
                 <View style={styles.listItem}>
                     <Text style={styles.text}>
@@ -84,7 +86,7 @@ class DrawerList extends Component {
                     </Text>
                 </View>
 
-                <TouchableNativeFeedback onPress={()=>this.props.closeDrawer()}>
+                <TouchableNativeFeedback onPress={()=>this.props.closeDrawer(null)}>
                     <View style={styles.headerHome}>
                         <Image
                             source={{uri: 'ic_home'}}
