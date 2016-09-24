@@ -2,6 +2,8 @@
  * Created by ming on 2016/9/16.
  */
 
+//侧边栏列表
+
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, ListView, Image, TouchableNativeFeedback} from 'react-native';
 import  {API_THEMES} from '../data/DataRepository';
@@ -33,11 +35,17 @@ class DrawerList extends Component {
 
     // 自定义方法
     _renderRow(rowData) {
+        console.log(this.props);
         return (
-            <TouchableNativeFeedback>
+            <TouchableNativeFeedback
+                onPress={()=>this.props.closeDrawer()}
+            >
                 <View style={styles.listItem}>
-                    <Text style={styles.text}>{rowData.name}</Text>
-                    <Image source={{uri: 'ic_chevron_right'}} style={{width: 25, height: 25}}/>
+                    <Text style={styles.text}>
+                        {rowData.name}</Text>
+                    <Image
+                        source={{uri: 'ic_chevron_right'}}
+                        style={styles.leftImg}/>
                 </View>
             </TouchableNativeFeedback>
         )
@@ -76,14 +84,15 @@ class DrawerList extends Component {
                     </Text>
                 </View>
 
-
-                <View style={styles.headerHome}>
-                    <Image
-                        source={{uri: 'ic_home'}}
-                        style={styles.homeImg}
-                    />
-                    <Text style={styles.homeText}>主页</Text>
-                </View>
+                <TouchableNativeFeedback onPress={()=>this.props.closeDrawer()}>
+                    <View style={styles.headerHome}>
+                        <Image
+                            source={{uri: 'ic_home'}}
+                            style={styles.homeImg}
+                        />
+                        <Text style={styles.homeText}>主页</Text>
+                    </View>
+                </TouchableNativeFeedback>
 
             </View>
 
@@ -111,7 +120,7 @@ var styles = StyleSheet.create({
     },
     text: {
         fontSize: 16,
-        color: '#B2B2B2',
+        color: '#B0B0B0',
         marginLeft: 20,
         width: 200,
     },
@@ -161,6 +170,10 @@ var styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         padding: 10,
+    },
+    leftImg: {
+        width: 25,
+        height: 25
     }
 
 });

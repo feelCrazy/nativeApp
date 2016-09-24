@@ -1,6 +1,9 @@
 /**
  * Created by ming on 2016/9/19.
  */
+
+//主页文章列表Item
+
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image, TouchableNativeFeedback} from 'react-native';
 
@@ -17,11 +20,12 @@ class ArticleItem extends Component {
         super(props);
         // 初始状态
         this.state = {};
+        this.setColor = this.setColor.bind(this);
     }
 
     // 自定义方法
-    handle() {
-
+    setColor() {
+        this.refs.title.setNativeProps({style: {color: '#777'}})
     }
 
     // 渲染
@@ -35,9 +39,12 @@ class ArticleItem extends Component {
         }
         return (
             <View {...this.props}>
-                <TouchableNativeFeedback>
+                <TouchableNativeFeedback
+                    onPress={this.setColor}
+                >
                     <View style={styles.row}>
                         <Text
+                            ref="title"
                             style={styles.storyText}
                             numberOfLines={3}>
                             {this.props.story.title}

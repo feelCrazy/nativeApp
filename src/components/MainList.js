@@ -2,9 +2,7 @@
  * Created by ming on 2016/9/19.
  */
 
-// listView 实现最受欢迎的日报， header使用轮播组件，可以下拉刷新，（加载更多看api返回的情况）
-// 日报正文api返回的是 html，所以使用webView组件渲染
-
+// 主页文章列表
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, ListView, TouchableOpacity, Image} from 'react-native';
 import ArticleItem from '../components/ArticleItem';
@@ -48,7 +46,6 @@ class MainList extends Component {
     fetchData(url) {
         fetch(url).then((res)=>res.json())
             .then((resJson)=> {
-                console.log(resJson);
                 this.setState({
                     dataSource: this.state.dataSource.cloneWithRows(resJson.stories),
                     pagerData: this.state.pagerData.cloneWithPages(resJson.top_stories),
@@ -65,7 +62,6 @@ class MainList extends Component {
     }
 
     _renderHeader() {
-        console.log(this.state.pagerData, '////');
         return (
             <View style={{flex: 1, height: 200}}>
                 <Viewpager

@@ -2,6 +2,8 @@
  * Created by ming on 2016/9/16.
  */
 
+//主屏幕
+
 import React, {Component} from 'react';
 import {View, StyleSheet, DrawerLayoutAndroid, ToolbarAndroid, Dimensions} from 'react-native';
 import DrawerList from '../components/DrawerList';
@@ -29,13 +31,19 @@ class MainScreen extends Component {
         // 初始状态
         this.state = {};
         this.renderList = this.renderList.bind(this);
+        this._closeDrawer = this._closeDrawer.bind(this);
     }
 
     // 自定义方法
     renderList() {
         return (
-            <DrawerList/>
+            <DrawerList
+                closeDrawer={this._closeDrawer}/>
         );
+    }
+
+    _closeDrawer() {
+        this.refs[DRAWER].closeDrawer();
     }
 
     // 渲染
