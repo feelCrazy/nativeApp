@@ -19,6 +19,7 @@ class StartScreen extends Component {
     }
 
     componentDidMount() {
+        let navigator = this.props.navigator;
         this.fetchData(API_START);
         this.state.bounceValue.setValue(1);
         Animated.timing(
@@ -28,6 +29,11 @@ class StartScreen extends Component {
                 duration: 5000,
             }
         ).start();
+        setTimeout(()=> {
+            navigator.replace({
+                name: 'home'
+            })
+        }, 2000);
     }
 
     // 自定义方法
@@ -39,7 +45,6 @@ class StartScreen extends Component {
                 this.setState({
                     data: resJson,
                 });
-
             })
             .done();
     }

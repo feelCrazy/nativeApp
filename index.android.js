@@ -15,8 +15,6 @@ import {
 import StartScreen from './src/components/StartScreen';
 import MainScreen from './src/components/MainScreen';
 
-import StoryToolbar from './src/components/StoryToolbar';
-
 // 使用Navigator 导航栏，还需要慢慢摸索使用
 
 class footballApp extends Component {
@@ -29,20 +27,17 @@ class footballApp extends Component {
     }
 
     componentDidMount() {
-        setTimeout(()=> {
-            this.setState({
-                startScreen: true,
-            });
-
-        }, 2000);
     }
 
     routerMapper(route, navigator) {
-        if (route.name === 'home') {
+        if (route.name === 'start') {
+            return (
+                <StartScreen navigator={navigator}/>
+            )
+        } else if (route.name === 'home') {
             return (
                 <View style={styles.container}>
                     <MainScreen navigator={navigator}/>
-                    {/*<StoryToolbar/>*/}
                 </View>
             );
         } else {
@@ -58,21 +53,16 @@ class footballApp extends Component {
 
 
     render() {
-        if (this.state.startScreen) {
-            let initialRoute = {name: 'home'};
-            return (
-                <Navigator
-                    sceneStyle={styles.container}
-                    initialRoute={initialRoute}
-                    configureScene={()=>Navigator.SceneConfigs.FadeAndroid}
-                    renderScene={this.routerMapper}
-                />
-            );
-        } else {
-            return (
-                <StartScreen/>
-            );
-        }
+        let initialRoute = {name: 'start'};
+        return (
+            <Navigator
+                sceneStyle={styles.container}
+                initialRoute={initialRoute}
+                configureScene={()=>Navigator.SceneConfigs.FadeAndroid}
+                renderScene={this.routerMapper}
+            />
+        );
+
 
     }
 }
