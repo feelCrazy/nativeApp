@@ -4,7 +4,7 @@
 
 import React, {Component} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-
+import StoryToolbar from './StoryToolbar'
 
 class StoryScreen extends Component {
     // 默认属性
@@ -28,13 +28,19 @@ class StoryScreen extends Component {
     // 渲染
     render() {
         return (
-            <View>
-                <Text style={styles.textDefault}>
+            <View style={styles.container}>
+                <StoryToolbar navigator={this.props.navigator}/>
+                <Text>
                     StoryScreen
                 </Text>
             </View>
         );
     }
 }
-var styles = StyleSheet.create({});
+var styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+    }
+});
 export default StoryScreen;

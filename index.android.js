@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import StartScreen from './src/components/StartScreen';
 import MainScreen from './src/components/MainScreen';
+import StoryScreen from './src/components/StoryScreen';
 
 // 使用Navigator 导航栏，还需要慢慢摸索使用
 
@@ -40,13 +41,9 @@ class footballApp extends Component {
                     <MainScreen navigator={navigator}/>
                 </View>
             );
-        } else {
+        } else if (route.name === 'story') {
             return (
-                <View style={styles.container}>
-                    <Text>
-                        Hello!!
-                    </Text>
-                </View>
+                <StoryScreen navigator={navigator}/>
             );
         }
     }

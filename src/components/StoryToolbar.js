@@ -31,8 +31,10 @@ class StoryToolbar extends Component {
     }
 
     // 自定义方法
-    handle() {
-
+    _pressBack() {
+        if (this.props.navigator) {
+            this.props.navigator.pop();
+        }
     }
 
     // 渲染
@@ -40,7 +42,7 @@ class StoryToolbar extends Component {
         return (
             <View {...this.props} style={{backgroundColor: '#2196F3'}}>
                 <View style={styles.actionCont}>
-                    <TouchableNativeFeedback>
+                    <TouchableNativeFeedback onPress={()=>this._pressBack()}>
                         <View style={styles.actionItem}>
                             <Image
                                 source={{uri: 'ic_arrow_back'}}

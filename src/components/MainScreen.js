@@ -40,6 +40,7 @@ class MainScreen extends Component {
     renderList() {
         return (
             <DrawerList
+                navigator={this.props.navigator}
                 closeDrawer={this._closeDrawer}/>
         );
     }
@@ -71,7 +72,7 @@ class MainScreen extends Component {
                         titleColor="white"
                         actions={toolActions}
                         style={styles.toolBar}/>
-                    <MainList/>
+                    <MainList navigator={this.props.navigator}/>
                 </View>
 
 

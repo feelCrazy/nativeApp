@@ -9,7 +9,8 @@ export const API_LATEST = 'http://news-at.zhihu.com/api/4/news/latest';         
 export const API_HOME = 'http://news.at.zhihu.com/api/4/news/before/';             // 过往消息
 export const API_THEME = 'http://news-at.zhihu.com/api/4/theme/';                  // 主题日报查看
 export const API_THEMES = 'http://news-at.zhihu.com/api/4/themes';                 // 主题日报列表
-export const API_STROY_EXTRA = 'http://news-at.zhihu.com/api/4/story-extra/';      // 文章详情
+export const API_STROY_EXTRA = 'http://news-at.zhihu.com/api/4/story-extra/';      // 评论详情
+export const API_NEWS = 'http://news.at.zhihu.com/api/4/news/';                    // 详情
 
 
 export function appStart(url) {

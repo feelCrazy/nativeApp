@@ -57,8 +57,17 @@ class MainList extends Component {
     renderItem(story) {
         return (
             <ArticleItem
+                _selectItem={()=>this._selectItem(story)}
                 story={story}/>
         )
+    }
+
+    _selectItem(story) {
+        this.props.navigator.push({
+            title: story.title,
+            name: 'story',
+            story: story,
+        });
     }
 
     _renderHeader() {

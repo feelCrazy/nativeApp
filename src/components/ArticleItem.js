@@ -25,7 +25,8 @@ class ArticleItem extends Component {
 
     // 自定义方法
     setColor() {
-        this.refs.title.setNativeProps({style: {color: '#777'}})
+        this.refs.title.setNativeProps({style: {color: '#777'}});
+        this.props._selectItem();
     }
 
     // 渲染
