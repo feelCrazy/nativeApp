@@ -25,13 +25,14 @@ class ArticleItem extends Component {
 
     // 自定义方法
     setColor() {
+        // console.log(this.props);
         this.refs.title.setNativeProps({style: {color: '#777'}});
         this.props._selectItem();
     }
 
     // 渲染
     render() {
-        var image = null;
+        let image = null;
         if (this.props.story.images && this.props.story.images[0]) {
             image = <Image
                 source={{uri: this.props.story.images[0]}}
@@ -41,8 +42,7 @@ class ArticleItem extends Component {
         return (
             <View {...this.props}>
                 <TouchableNativeFeedback
-                    onPress={this.setColor}
-                >
+                    onPress={this.setColor}>
                     <View style={styles.row}>
                         <Text
                             ref="title"
