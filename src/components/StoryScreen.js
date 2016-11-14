@@ -65,7 +65,7 @@ class StoryScreen extends Component {
             return (
                 <View style={styles.container}>
                     <StoryToolbar navigator={this.props.navigator}/>
-                    <Text style={{flex:1,justifyContent:'center'}}>
+                    <Text>
                         正在加载...
                     </Text>
                 </View>
