@@ -43,7 +43,7 @@ class footballApp extends Component {
             );
         } else if (route.name === 'story') {
             return (
-                <StoryScreen navigator={navigator}/>
+                <StoryScreen navigator={navigator} story={route.story}/>
             );
         }
     }

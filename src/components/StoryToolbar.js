@@ -14,12 +14,6 @@ import {
 
 
 class StoryToolbar extends Component {
-    // 默认属性
-    static defaultProps = {};
-
-    // 属性类型
-    static propTypes = {};
-
     // 构造
     constructor(props) {
         super(props);
@@ -29,6 +23,7 @@ class StoryToolbar extends Component {
             extra: null,
         };
     }
+
 
     // 自定义方法
     _pressBack() {
@@ -81,7 +76,7 @@ class StoryToolbar extends Component {
         );
     }
 }
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
     actionCont: {
         height: 56,
         flexDirection: 'row',
@@ -110,4 +105,8 @@ var styles = StyleSheet.create({
         marginLeft: 5,
     }
 });
+
+StoryToolbar.propTypes = {
+    navigator: React.PropTypes.object.isRequired,
+};
 export default StoryToolbar;

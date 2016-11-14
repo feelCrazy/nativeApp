@@ -10,6 +10,7 @@ import {API_LATEST} from '../data/DataRepository';
 import Viewpager from 'react-native-viewpager';
 
 
+
 class MainList extends Component {
     // 默认属性
     static defaultProps = {};
@@ -21,8 +22,8 @@ class MainList extends Component {
     constructor(props) {
         super(props);
         const ds = new ListView.DataSource({
-            rowHasChanged: (r1, r2)=> r1 !== r2,
-            sectionHeaderHasChanged: (row1, row2)=> row1 !== row2,
+            rowHasChanged: (r1, r2) => r1 !== r2,
+            sectionHeaderHasChanged: (row1, row2) => row1 !== row2,
         });
         const pageData = new Viewpager.DataSource({
             pageHasChanged: (p1, p2) => p1 !== p2,
@@ -44,17 +45,18 @@ class MainList extends Component {
 
     // 自定义方法
     fetchData(url) {
-        fetch(url).then((res)=>res.json())
-            .then((resJson)=> {
+        fetch(url).then((res) => res.json())
+            .then((resJson) => {
                 this.setState({
                     dataSource: this.state.dataSource.cloneWithRows(resJson.stories),
                     pagerData: this.state.pagerData.cloneWithPages(resJson.top_stories),
                 });
             })
-            .catch((err)=>console.log(err))
+            .catch((err) => console.log(err))
     }
 
     renderItem(story) {
+
         return (
             <ArticleItem
                 _selectItem={()=>this._selectItem(story)}
@@ -66,7 +68,7 @@ class MainList extends Component {
         this.props.navigator.push({
             title: story.title,
             name: 'story',
-            story: story,
+            story: story
         });
     }
 
@@ -86,7 +88,7 @@ class MainList extends Component {
     _renderPage(data, pagaID) {
 
         return (
-            <TouchableOpacity style={{flex: 1}}>
+            <TouchableOpacity style={{flex: 1}} onPress={()=>this._selectItem(data)}>
                 <Image
                     style={styles.headerItem}
                     source={{uri: data.image}}>
