@@ -46,10 +46,14 @@ class MainScreen extends Component {
     }
 
     _closeDrawer(title) {
-        console.log('--', title);
         this.refs[DRAWER].closeDrawer();
         this.setState({
             title: title,
+        });
+        this.props.navigator.push({
+            title: title,
+            name: 'theme',
+            theme: title
         });
 
     }

@@ -22,7 +22,7 @@ class DrawerList extends Component {
         super(props);
         // 初始状态
         const ds = new ListView.DataSource({
-            rowHasChanged: (r1, r2)=> r1 !== r2
+            rowHasChanged: (r1, r2) => r1 !== r2
         });
         this.state = {
             dataSource: ds
@@ -40,8 +40,7 @@ class DrawerList extends Component {
     _renderRow(rowData) {
         return (
             <TouchableNativeFeedback
-                onPress={()=>this.props.closeDrawer(rowData)}
-            >
+                onPress={()=>this.props.closeDrawer(rowData)}>
                 <View style={styles.listItem}>
                     <Text style={styles.text}>
                         {rowData.name}</Text>
@@ -55,14 +54,15 @@ class DrawerList extends Component {
 
     fetchData(url) {
         fetch(url)
-            .then((res)=>res.json())
-            .then((resJson)=> {
+            .then((res) => res.json())
+            .then((resJson) => {
+                console.log('==>', resJson);
                 this.setState({
                     dataSource: this.state.dataSource.cloneWithRows(resJson.others)
                 });
 
             })
-            .catch((err)=> {
+            .catch((err) => {
                 console.log(err);
                 this.setState({
                     dataSource: this.state.dataSource

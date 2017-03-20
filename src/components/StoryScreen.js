@@ -26,11 +26,11 @@ class StoryScreen extends Component {
     }
 
     componentDidMount() {
-        this.getFetch()
+        this.getFetch(this.props.story.id)
     }
 
-    getFetch = () => {
-        fetch(API_NEWS + this.props.story.id).then((res) => res.json())
+    getFetch = (id) => {
+        fetch(API_NEWS + id).then((res) => res.json())
             .then((resJson) => {
                 console.log(resJson);
                 this.setState({
@@ -49,11 +49,11 @@ class StoryScreen extends Component {
 
     // 渲染
     render() {
-        if (this.state.isLoad) {
+        if (this.state.isLoad && this.state.detail.body) {
             let html = '<!DOCTYPE html><html><head><link rel="stylesheet" type="text/css" href="'
                 + this.state.detail.css[0]
-                + '" /></head><body>' + this.state.detail.body
-                + '</body></html>';
+                + '" /></head><body><div style="position: relative;"><div style="position: absolute;height:200;width:100%;"> <img src="' + this.state.detail.image + '" style="width:100%;height:200px;background-size:contain"> </div>' + this.state.detail.body
+                + '</div></body></html>';
             return (
                 <View style={styles.container}>
                     <StoryToolbar navigator={this.props.navigator}/>
@@ -82,5 +82,5 @@ let styles = StyleSheet.create({
 });
 StoryScreen.propTypes = {
     story: React.PropTypes.object.isRequired,
-}
+};
 export default StoryScreen;

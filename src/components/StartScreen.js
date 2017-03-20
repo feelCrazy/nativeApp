@@ -20,7 +20,7 @@ class StartScreen extends Component {
 
     componentDidMount() {
         let navigator = this.props.navigator;
-        this.fetchData(API_START);
+        // this.fetchData(API_START);
         this.state.bounceValue.setValue(1);
         Animated.timing(
             this.state.bounceValue,
@@ -29,22 +29,24 @@ class StartScreen extends Component {
                 duration: 5000,
             }
         ).start();
-        setTimeout(()=> {
+        setTimeout(() => {
             navigator.replace({
                 name: 'home'
             })
-        }, 2000);
+        }, 1500);
     }
 
     // 自定义方法
     fetchData(url) {
         fetch(url)
-            .then((res)=>res.json())
-            .then((resJson)=> {
+            .then((res) => res.json())
+            .then((resJson) => {
                 console.log(resJson);
-                this.setState({
-                    data: resJson,
-                });
+                if (resJson.ok === 200) {
+                    this.setState({
+                        data: resJson,
+                    });
+                }
             })
             .done();
     }
@@ -52,11 +54,11 @@ class StartScreen extends Component {
     // 渲染
     render() {
         let img;
-        if (this.state.data) {
-            img = {uri: this.state.data.img};
-        } else {
-            img = require('../images/splash.png');
-        }
+        // if (this.state.data) {
+        //     img = {uri: this.state.data.img};
+        // } else {
+        img = require('../images/splash.png');
+        // }
         return (
             <View style={styles.container}>
                 <Animated.Image
@@ -100,12 +102,15 @@ var styles = StyleSheet.create({
     logo: {
         resizeMode: 'contain',
         position: 'absolute',
-        left: 125,
+        left: 105,
         right: 0,
         bottom: 30,
         height: 54,
         backgroundColor: 'transparent',
-
+        /*height: 54,
+         alignItems: "flex-end",
+         alignSelf: "center",
+         marginBottom: 30*/
     }
 
 });
